@@ -135,7 +135,7 @@ body.ocean {
 #velocity-display {
     position: absolute;
     top: 1vh;
-    right: 1vh;
+    left: 1vh;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 1vh;
