@@ -245,8 +245,8 @@ function updateGridHighlight(evt) {
   
   gridHighlightEl.style.left = screen.left + "vh";
   gridHighlightEl.style.bottom = screen.bottom + "vh";
-  gridHighlightEl.style.width = sizeVh + "vh";
-  gridHighlightEl.style.height = sizeVh + "vh";
+  gridHighlightEl.style.width = (sizeVh-0.5) + "vh";
+  gridHighlightEl.style.height = (sizeVh-0.4) + "vh";
   gridHighlightEl.style.display = "block";
 }
 
