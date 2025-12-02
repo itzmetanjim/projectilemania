@@ -7,6 +7,82 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body class="earth">
-   <div class="ground earth" id="ground"></div> 
+   <div id="world">
+       <div id="projectile-layer"></div>
+       <div class="ground earth" id="ground"></div>
+       <div id="ui-layer">
+           <div id="velocity-display"></div>
+           <div id="biome-controls" class="corner-panel">
+               <button class="ui-button" id="pause-button" title="Pause/Play">
+                   &#10074;&#10074;
+               </button>
+               <button class="ui-button biome-button" data-biome="earth" title="Earth">
+                   <img src="grass.png" alt="Earth">
+                   <span class="button-label">Earth</span>
+               </button>
+               <button class="ui-button biome-button" data-biome="moon" title="Moon">
+                   <img src="endstone.png" alt="Moon">
+                   <span class="button-label">Moon</span>
+               </button>
+               <button class="ui-button biome-button" data-biome="ocean" title="Water">
+                   <img src="water.gif" alt="Water">
+                   <span class="button-label">Water</span>
+               </button>
+               <button class="ui-button biome-button" data-biome="slime" title="Trampoline">
+                   <img src="slime.png" alt="Trampoline">
+                   <span class="button-label">Trampoline</span>
+               </button>
+           </div>
+           <div id="hotbar">
+               <button class="ui-button item-button selected" data-item="iron">
+                   <img src="cannonball.png" alt="Iron Cannonball">
+                   <span class="button-label">Iron Cannonball</span>
+               </button>
+               <button class="ui-button item-button" data-item="beach">
+                   <img src="beachball.png" alt="Beach Ball">
+                   <span class="button-label">Beach Ball</span>
+               </button>
+               <button class="ui-button item-button" data-item="snow">
+                   <img src="snowball.png" alt="Normal Ball">
+                   <span class="button-label">Normal Ball</span>
+               </button>
+               <button class="ui-button item-button" data-item="slime">
+                   <img src="slimeball.png" alt="Bouncy Ball">
+                   <span class="button-label">Bouncy Ball</span>
+               </button>
+           </div>
+           <div id="controls-panel" class="corner-panel right-panel">
+               <div class="control-group">
+                   <label for="speed-slider">Sim Speed: <span id="speed-val">1.0</span>x</label>
+                   <input type="range" id="speed-slider" min="0.1" max="3.0" step="0.1" value="1.0">
+               </div>
+               <div class="control-group">
+                   <label for="power-slider">Launch Power: <span id="power-val">1.2</span></label>
+                   <input type="range" id="power-slider" min="0.1" max="10.0" step="0.1" value="1.2">
+               </div>
+               <div class="control-group">
+                   <label for="integrator-select">Integrator:</label>
+                   <select id="integrator-select">
+                       <option value="semi-implicit">Semi-Implicit Euler</option>
+                       <option value="euler">Explicit Euler</option>
+                       <option value="verlet">Verlet</option>
+                       <option value="rk4">Runge-Kutta 4</option>
+                   </select>
+               </div>
+           </div>
+           <div id="controls-help" class="corner-panel bottom-right-panel">
+               <div class="help-title">Controls</div>
+               <div class="help-line"><kbd>Drag</kbd> Launch projectile</div>
+               <div class="help-line"><kbd>Shift+Drag</kbd> Move object</div>
+               <div class="help-line"><kbd>Right Click</kbd> Remove object</div>
+               <div class="help-line"><kbd>Ctrl+Click</kbd> Place cobblestone</div>
+               <div class="help-line"><kbd>Ctrl+Shift+Click</kbd> Place slime block</div>
+               <div class="help-line"><kbd>Ctrl+Right Click</kbd> Remove block</div>
+               <div class="help-line"><kbd>Space/K</kbd> Pause/Play</div>
+               <div class="help-line"><kbd>Shift+C</kbd> Clear all</div>
+           </div>
+       </div>
+   </div>
+   <script src="script.js"></script>
 </body>
 </html>

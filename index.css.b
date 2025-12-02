@@ -1,52 +1,51 @@
 body {
     margin: 0;
-    overflow: hidden;
+    overflow: hidden; /* Prevent scrollbars */
     background: #222;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     user-select: none;
     -webkit-user-select: none;
 }
-body.mars {
+body.mars {/*You can ignore the mars classes*/
     background: #821e1e;
 }
 body.earth,
 body.slime {
     background: #3697f2;
 }
-body.moon {
+body.moon { /*Moon is the end*/
     background: #1e0223;
 }
 body.ocean {
     background: #87ceeb;
 }
-
 .ground {
-    position: fixed;   
-    bottom: 0;         
-    left: 0;           
-    width: 100%;       
-    height: 40vh;      
-    z-index: 1000;     
-    background-repeat: repeat-x, repeat;
-    background-position: top left, top left;
-    background-size: 100px 100px, 100px 100px;
-    image-rendering: pixelated; 
+  position: fixed;   
+  bottom: 0;         
+  left: 0;           
+  width: 100%;       
+  height: 40vh;      
+  z-index: 1000;     
+  background-repeat: repeat-x, repeat;
+  background-position: top left, top left;
+  background-size:100px 100px, 100px 100px;
+  image-rendering: pixelated; 
 }
 
-.ground.earth {
-    background-image: url('grass.png'), url('dirt.png');
+.ground.earth{
+  background-image: url('grass.png'), url('dirt.png');
 }
-.ground.mars {
+.ground.mars{
     background-image: url('ngrass.png'), url('netherrack.png');
 }
-.ground.moon {
+.ground.moon{/*Moon is the end*/
     background-image: url('endstone.png'), url("endstone.png");
 }
-.ground.ocean {
+.ground.ocean{
     background-image: url('water.gif'), url("water.gif");
     opacity: 0.9;
 }
-.ground.slime {
+.ground.slime{
     background-image: url('slime.png'), url("slime.png");
 }
 
@@ -63,7 +62,7 @@ body.ocean {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 1500;
+    z-index: 1500; /* Above ground (1000), below UI (2000) */
 }
 
 .projectile {
@@ -79,7 +78,7 @@ body.ocean {
     transform: translate(0%, 0%);
     image-rendering: pixelated;
     pointer-events: none;
-    z-index: 1100;
+    z-index: 1100; /* Above ground, below projectiles */
 }
 
 .grid-highlight {
@@ -109,7 +108,7 @@ body.ocean {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 0.25vh;
     pointer-events: none;
-    z-index: 1700;
+    z-index: 1700; /* Above everything except UI */
 }
 
 .aim-line::after {
@@ -122,112 +121,8 @@ body.ocean {
     border-top: 0.6vh solid transparent;
     border-bottom: 0.6vh solid transparent;
 }
-
-/* UI */
-
-#ui-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2000;
-}
-
-#velocity-display {
-    position: absolute;
-    top: 1vh;
-    right: 1vh;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 1vh;
-    border-radius: 0.5vh;
-    font-family: monospace;
-    font-size: 2vh;
-    display: none;
-    pointer-events: none;
-    white-space: pre-line;
-}
-
-.corner-panel {
-    position: absolute;
-    left: 1vh;
-    bottom: 1vh;
-    display: flex;
-    gap: 0.5vh;
-    padding: 0.5vh;
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: 0.75vh;
-    backdrop-filter: blur(4px);
-    pointer-events: auto;
-}
-
-.corner-panel.right-panel {
-    left: auto;
-    right: 1vh;
-    bottom: auto;
-    top: 1vh;
-    flex-direction: column;
-    color: white;
-    font-size: 1.5vh;
-    width: 20vh;
-}
-
-.corner-panel.bottom-right-panel {
-    left: auto;
-    right: 1vh;
-    bottom: 1vh;
-    flex-direction: column;
-    color: white;
-    font-size: 1.3vh;
-    padding: 1vh;
-}
-
-.help-title {
-    font-weight: bold;
-    font-size: 1.5vh;
-    margin-bottom: 0.5vh;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 0.3vh;
-}
-
-.help-line {
-    display: flex;
-    gap: 0.5vh;
-    margin: 0.2vh 0;
-}
-
-.help-line kbd {
-    background: rgba(255,255,255,0.15);
-    padding: 0.1vh 0.4vh;
-    border-radius: 0.3vh;
-    font-family: monospace;
-    font-size: 1.1vh;
-    white-space: nowrap;
-}
-
-.control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2vh;
-}
-
-.control-group label {
-    display: flex;
-    justify-content: space-between;
-}
-
-.control-group input, .control-group select {
-    width: 100%;
-    font-size: 1.2vh;
-}
-
-.ui-button {
-    border: none;
-    padding: 0.4vh;
-    background: rgba(20, 20, 20, 0.8);
-    border-radius: 0.5vh;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     image-rendering: pixelated;
@@ -237,17 +132,6 @@ body.ocean {
     width: 4vh;
     height: 4vh;
     object-fit: cover;
-}
-
-.button-label {
-    color: white;
-    font-size: 0.9vh;
-    margin-top: 0.2vh;
-    text-align: center;
-    max-width: 6vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .ui-button.selected {
@@ -281,8 +165,25 @@ body.ocean {
     height: 5vh;
 }
 
-.item-button .button-label {
-    max-width: 8vh;
-    font-size: 1vh;
+/* Aim arrow */
+
+.aim-line {
+    position: absolute;
+    transform-origin: left center;
+    height: 0.5vh;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.25vh;
+    pointer-events: none;
+}
+
+.aim-line::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 1vh solid rgba(255, 255, 255, 0.9);
+    border-top: 0.6vh solid transparent;
+    border-bottom: 0.6vh solid transparent;
 }
 
