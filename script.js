@@ -875,3 +875,16 @@ window.addEventListener("load", () => {
   setItem("iron");
   requestAnimationFrame(loop);
 });
+
+window.addEventListener('mousemove', (e) => {
+  try{
+      ctrlPressed = e.ctrlKey; //apparently the mouse event knows this accurately
+      shiftPressed = e.shiftKey;}catch{/*these vars are not defined yet*/}
+    
+})
+
+window.addEventListener('blur', () => {try{
+  //the user ctrl+tabbed out
+    ctrlPressed = false;
+    shiftPressed = false
+}catch{}});
