@@ -9,12 +9,32 @@ const DT = 1 / TARGET_FPS;
 const BLOCK_SIZE = 1.0; 
 let WORLD_WIDTH_M = 100 / VH_PER_M * (window.innerWidth / window.innerHeight); 
 var PXM=-1;//for fluidsim
-const FLUID_GRID_SCALE = 3;//canvas is 1/n screen size
-const FLUID_PARTICLE_RADIUS = 0.06;
-const WATER_PARTICLE_DENSITY = 1000;
-const FLUID_REST_DENSITY = 8;
-const FLUID_RENDER_PIXEL_SIZE = 4;
-const FLUID_RENDER_USE_BLOB_KERNEL = false;
+
+const paramsString = window.location.search
+const urlParams = new URLSearchParams(paramsString)
+const watertype = urlParams.get("watertype") === "true" ? true : false
+
+if (!watertype){
+  window.FLUID_GRID_SCALE = 3;//canvas is 1/n screen size
+window.FLUID_PARTICLE_RADIUS = 0.06;
+window.WATER_PARTICLE_DENSITY = 1000;
+window.FLUID_REST_DENSITY = 8;
+window.FLUID_RENDER_PIXEL_SIZE = 4;
+window.FLUID_RENDER_USE_BLOB_KERNEL = false;
+}else{
+   window.FLUID_GRID_SCALE = 1;//canvas is 1/n screen size
+window.FLUID_PARTICLE_RADIUS = 0.06;
+window.WATER_PARTICLE_DENSITY = 1000;
+window.FLUID_REST_DENSITY = 8;
+window.FLUID_RENDER_PIXEL_SIZE = 4;
+window.FLUID_RENDER_USE_BLOB_KERNEL = true;
+}
+const FLUID_GRID_SCALE = window.FLUID_GRID_SCALE;
+const FLUID_PARTICLE_RADIUS = window.FLUID_PARTICLE_RADIUS;
+const WATER_PARTICLE_DENSITY = window.WATER_PARTICLE_DENSITY;
+const FLUID_REST_DENSITY = window.FLUID_REST_DENSITY;
+const FLUID_RENDER_PIXEL_SIZE = window.FLUID_RENDER_PIXEL_SIZE;
+const FLUID_RENDER_USE_BLOB_KERNEL = window.FLUID_RENDER_USE_BLOB_KERNEL;
 const _LE_TEST = new Uint8Array(new Uint32Array([0x0a0b0c0d]).buffer)[0] === 0x0d;
 function packRGBA32(r, g, b, a) {
   return _LE_TEST
@@ -333,8 +353,8 @@ class FluidSimulation {
   markSolids(blocks, groundY) {
     const gw = this.gridWidth, gh = this.gridHeight;
     for (let j = 0; j < gh; j++) {
-      for (let i = 0; i < gw; i++) {
-        if (i === 0 || i === gw - 1) {
+      for (let i = -10; i < gw; i++) {
+        if (i === -10 || i === gw - 1) {
           this.cellType[j * gw + i] = 2;
           continue;
         }
@@ -460,7 +480,7 @@ class FluidSimulation {
       const vy2 = this.sampleV(midX, midY);
       p.x += vx2 * dt;
       p.y += vy2 * dt;
-      const leftWall = 0;
+      const leftWall = -10;
       const rightWall = WORLD_WIDTH_M;
       if (p.x < leftWall + FLUID_PARTICLE_RADIUS) {
         p.x = leftWall + FLUID_PARTICLE_RADIUS;
@@ -1632,3 +1652,11 @@ window.addEventListener("resize", () => {
         fluidSim.resize();
     }
 });
+
+window.switchWaterStyle = ()=>{
+  let newWaterType= !watertype?"true":"false"
+  //change search param "watertype" to newWaterType
+  let URLu = new URL(window.location);
+  URLu.searchParams.set("watertype", newWaterType);
+  window.location.replace(URLu);
+}
