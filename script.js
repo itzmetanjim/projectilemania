@@ -80,7 +80,7 @@ const { xs: FLUID_RENDER_OFFSETS_X, ys: FLUID_RENDER_OFFSETS_Y } =
     ? buildBlobKernelOffsets()
     : buildSquareKernelOffsets(FLUID_RENDER_PIXEL_SIZE);
 window.getPixelColor=(x,y)=>{return [58,92,166,220]}
-async function defGetPixelColor(){const watert = await fetch("/water.json")
+async function defGetPixelColor(){const watert = await fetch("/projectilemania/water.json")
 if (!watert.ok){
   console.log("warning:/water.json not fetched")
   window.getPixelColor=(x,y)=>{return [58,92,166,220]}
