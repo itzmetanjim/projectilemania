@@ -52,8 +52,8 @@ body.ocean {
     background-image: url('endstone.png'), url("endstone.png");
 }
 .ground.ocean {
-    background-image: url('water.gif'), url("water.gif");
-    opacity: 0.9;
+    /* Hide ground for ocean biome so we can see the deep water particles */
+    display: none;
 }
 .ground.slime {
     background-image: url('slime.png'), url("slime.png");
@@ -73,6 +73,20 @@ body.ocean {
     inset: 0;
     pointer-events: none;
     z-index: 1500;
+}
+
+#fluid-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 500;
+}
+#fluid-canvas {
+    position: absolute;
+    inset: 0;
+    image-rendering: pixelated;
+    width: 100vw;
+    height: 100vh;
 }
 
 .projectile {
@@ -98,6 +112,17 @@ body.ocean {
     pointer-events: none;
     z-index: 1050;
     display: none;
+}
+
+.water-radius-highlight {
+    position: absolute;
+    border: 0.3vh dashed rgba(58, 92, 166, 0.9);
+    background: rgba(58, 92, 166, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1055;
+    display: none;
+    transform: translate(-50%, 50%);
 }
 
 .particle {

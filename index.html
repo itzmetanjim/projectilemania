@@ -11,8 +11,16 @@
 </head>
 <body class="earth">
    <div id="world">
+    <!-- --fluid layer: a canvas shows all waterp articles as pixels
+canvas for perfomance-- -->
+       <div id="fluid-layer">  
+        <canvas id="fluid-canvas"></canvas>
+       </div>
+    <!-- --projectile layer: all projectiles,  aim line,  block grid highlight blocks themselves are here-- -->
        <div id="projectile-layer"></div>
+    <!-- --onlty ground is here-- -->
        <div class="ground earth" id="ground"></div>
+    <!-- --ui layer is in front-- -->
        <div id="ui-layer">
            <div id="velocity-display"></div>
            <div id="biome-controls" class="corner-panel">
@@ -64,7 +72,7 @@
                    <input type="range" id="power-slider" min="0.1" max="10.0" step="0.1" value="1.2">
                </div>
                <div class="control-group">
-                   <label for="integrator-select">Integrator:</label>
+                   <label for="integrator-select">Integrator(does not apply to water):</label>
                    <select id="integrator-select">
                        <option value="semi-implicit">Semi-Implicit Euler</option>
                        <option value="euler">Explicit Euler</option>
@@ -79,11 +87,16 @@
                <div class="help-line"><kbd>Drag</kbd> Launch projectile.</div>
                <div class="help-line"><kbd>Shift+Drag</kbd> Move object</div>
                <div class="help-line"><kbd>Right Click</kbd> Remove object</div>
-               <div class="help-line"><kbd>Ctrl+Click</kbd> Place cobblestone</div>
-               <div class="help-line"><kbd>Ctrl+Shift+Click</kbd> Place slime block</div>
+               <div class="help-line"><kbd>Ctrl+Click</kbd> Place <img src="cobblestone.png">cobblestone</div>
+               <div class="help-line"><kbd>Ctrl+Shift+Click</kbd> Place <img src="slime.png">slime block</div>
                <div class="help-line"><kbd>Ctrl+Right Click</kbd> Remove block</div>
+               <div class="help-line"><kbd>A+Click/Drag</kbd> Add <img src="water.gif" width="16">water circle</div>
+               <div class="help-line"><kbd>Shift+A+Click</kbd> Add <img src="water.gif" width=16>water block</div>
+               <div class="help-line"><kbd>Z+Click/Drag</kbd> Remove water circle</div>
+               <div class="help-line"><kbd>Shift+Z+Click</kbd> Remove water block</div>
                <div class="help-line"><kbd>Space/K</kbd> Pause/Play</div>
                <div class="help-line"><kbd>Shift+C</kbd> Clear all</div>
+               <div class="help-line"> </div>
            </div>
        </div>
    </div>
